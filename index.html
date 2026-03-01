@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShipCreators — Real Creator Videos for Founders Who Ship</title>
+    <meta name="description" content="You built it with AI. Let real people sell it. 60-200 real creator videos/month delivered weekly. No agency BS.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111111;
+            --bg-card-hover: #161616;
+            --border: #1e1e1e;
+            --border-accent: #22c55e;
+            --green: #22c55e;
+            --green-dim: #16a34a;
+            --green-glow: rgba(34, 197, 94, 0.4);
+            --green-glow-strong: rgba(34, 197, 94, 0.6);
+            --text: #f5f5f5;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --red-muted: #ef4444;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'DM Sans', sans-serif;
+            --max-width: 1100px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+        .delay-7 { animation-delay: 0.7s; }
+
+        /* Strikethrough animation */
+        @keyframes strikeReveal {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 0;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--mono);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--green);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #2dd868;
+            box-shadow: 0 0 24px var(--green-glow), 0 0 48px rgba(34, 197, 94, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            color: var(--text);
+            border-color: #333;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-large {
+            padding: 14px 28px;
+            font-size: 0.9rem;
+        }
+
+        .btn-xl {
+            padding: 18px 36px;
+            font-size: 1rem;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--green);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 6px 16px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            font-family: var(--mono);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+            margin: 0 auto 24px;
+        }
+
+        .hero h1 .line-struck {
+            position: relative;
+            display: inline;
+            color: var(--text-dim);
+        }
+
+        .hero h1 .line-struck::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            height: 3px;
+            background: var(--red-muted);
+            width: 100%;
+            animation: strikeReveal 0.8s ease-out 0.8s forwards;
+            width: 0;
+        }
+
+        .hero h1 .line-green {
+            color: var(--green);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            font-weight: 400;
+        }
+
+        .hero-ctas {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .hero-proof {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            font-family: var(--sans);
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--green);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--mono);
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin-bottom: 48px;
+        }
+
+        .section-center {
+            text-align: center;
+        }
+
+        .section-center .section-sub {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== PROBLEM ===== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 32px;
+            transition: border-color 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: #2a2a2a;
+        }
+
+        .problem-card h3 {
+            font-family: var(--mono);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .problem-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            margin-bottom: 32px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--green);
+            font-family: var(--mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            font-family: var(--mono);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .steps-note {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        /* ===== PRICING ===== */
+        #pricing {
+            padding: 120px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px 32px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--green);
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.1), 0 0 80px rgba(34, 197, 94, 0.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #000;
+            background: var(--green);
+            padding: 5px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .pricing-plan {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-family: var(--mono);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .pricing-per-video {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+
+        .pricing-per-video .cheapest {
+            color: var(--green);
+        }
+
+        .pricing-savings {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--green);
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .pricing-detail {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-detail strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+            flex: 1;
+        }
+
+        .pricing-features li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pricing-features li .check {
+            color: var(--green);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        /* ===== COMPARISON TABLE ===== */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-card);
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 600px;
+        }
+
+        .compare-table thead th {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: left;
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .compare-table thead th:first-child {
+            color: var(--text-dim);
+        }
+
+        .compare-table thead th.highlight {
+            color: var(--green);
+        }
+
+        .compare-table tbody td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+
+        .compare-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .compare-table tbody td:first-child {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .compare-table tbody td.highlight {
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        /* ===== ANTI-AI ===== */
+        .anti-ai-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 48px;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .anti-ai-box h2 {
+            font-family: var(--mono);
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .anti-ai-box p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .anti-ai-box .badge {
+            margin-bottom: 0;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: left;
+            padding: 24px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-q:hover {
+            color: var(--green);
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 200px;
+        }
+
+        .faq-a p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            padding-bottom: 24px;
+        }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .final-cta h2 {
+            font-family: var(--mono);
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .final-cta .sub {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .final-cta .detail {
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .final-cta .small-text {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .final-cta .small-text a {
+            color: var(--text-muted);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .final-cta .small-text a:hover {
+            color: var(--text);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-left .logo {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer-left .tagline {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 0.85rem;
+        }
+
+        .footer-right a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-right a:hover {
+            color: var(--text);
+        }
+
+        .footer-fine {
+            width: 100%;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 130px 0 80px;
+            }
+
+            section {
+                padding: 72px 0;
+            }
+
+            #pricing {
+                padding: 80px 0;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 440px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .hero-ctas .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .anti-ai-box {
+                padding: 32px 24px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .final-cta {
+                padding: 80px 0;
+            }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">ship<span>creators</span></a>
+            <a href="https://cal.com/alvaro.viralux/tts?utm_source=shipcreators&utm_campaign=nav" class="btn btn-primary">Get Started &rarr;</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge fade-in delay-1">[ FOR FOUNDERS WHO SHIP ]</div>
+            <h1 class="fade-in delay-2">
+                You built it with AI.<br>
+                <span class="line-struck">Let AI sell it.</span><br>
+                <span class="line-green">Let real people sell it.</span>
+            </h1>
+            <p class="hero-sub fade-in delay-3">Real creators. Real videos. Delivered weekly. No agency BS.</p>
+            <div class="hero-ctas fade-in delay-4">
+                <a href="https://cal.com/alvaro.viralux/tts?utm_source=shipcreators&utm_campaign=hero" class="btn btn-primary btn-large">Start Growing &rarr;</a>
+                <a href="#how-it-works" class="btn btn-ghost btn-large">See How It Works &darr;</a>
+            </div>
+            <p class="hero-proof fade-in delay-5">Trusted by founders who are done waiting for organic growth</p>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- PROBLEM -->
+    <section id="problem">
+        <div class="container">
+            <h2 class="section-title reveal">The founder marketing trap.</h2>
+            <div class="problem-grid">
+                <div class="problem-card reveal">
+                    <h3>Posting yourself doesn't scale</h3>
+                    <p>You're building. You can't also be a full-time content creator.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <h3>AI content gets ignored</h3>
+                    <p>Audiences can smell it. Authentic human creators convert 3x better.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <h3>Agencies want $10K/month</h3>
+                    <p>For a solo founder, that's not a marketing budget. That's your runway.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+        <div class="container section-center">
+            <h2 class="section-title reveal">Subscribe. Receive. Grow.</h2>
+            <div class="steps">
+                <div class="step reveal">
+                    <div class="step-num">1</div>
+                    <h3>Pick your plan</h3>
+                    <p>Choose 60 or 200 videos/month based on your growth goals.</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-num">2</div>
+                    <h3>We set everything up</h3>
+                    <p>No social accounts? No problem. We create and fully manage your TikTok, Instagram, and YouTube accounts for you. You show up to finished profiles with content already posting.</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-num">3</div>
+                    <h3>We handle everything</h3>
+                    <p>Creator sourcing, product seeding, coordination, posting. You do nothing.</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-num">4</div>
+                    <h3>Videos delivered weekly</h3>
+                    <p>Dripped across TikTok, Instagram, and YouTube every week.</p>
+                </div>
+            </div>
+            <p class="steps-note reveal">Every video is yours. Run them as Meta ads, put them on your landing page, anywhere.</p>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- PRICING -->
+    <section id="pricing">
+        <div class="container section-center">
+            <h2 class="section-title reveal">Simple pricing. No retainers. No surprises.</h2>
+            <p class="section-sub reveal">Cancel anytime. Videos are yours to keep forever.</p>
+
+            <div class="pricing-grid">
+                <!-- STARTER -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-plan">starter</div>
+                    <div class="pricing-price">$1,500<span>/mo</span></div>
+                    <div class="pricing-per-video">$25/video</div>
+                    <div class="pricing-detail"><strong>60</strong> videos/month</div>
+                    <div class="pricing-detail"><strong>15</strong> videos/week</div>
+                    <div class="pricing-detail">TikTok + Instagram + YouTube</div>
+                    <ul class="pricing-features">
+                        <li><span class="check">&#10003;</span> Real human creators</li>
+                        <li><span class="check">&#10003;</span> Creator sourcing &amp; management</li>
+                        <li><span class="check">&#10003;</span> Full content ownership</li>
+                        <li><span class="check">&#10003;</span> Weekly delivery</li>
+                        <li><span class="check">&#10003;</span> Use for paid ads anywhere</li>
+                    </ul>
+                    <a href="https://cal.com/alvaro.viralux/tts?utm_source=shipcreators&utm_campaign=starter" class="btn btn-ghost btn-large">Start Starter &rarr;</a>
+                </div>
+
+                <!-- SCALE -->
+                <div class="pricing-card featured reveal">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <div class="pricing-plan">scale</div>
+                    <div class="pricing-price">$3,000<span>/mo</span></div>
+                    <div class="pricing-per-video">$15/video &mdash; <span class="cheapest">cheapest per video</span></div>
+                    <div class="pricing-savings">vs $30,000&ndash;$42,400 at market rates</div>
+                    <div class="pricing-detail"><strong>200</strong> videos/month</div>
+                    <div class="pricing-detail"><strong>50</strong> videos/week</div>
+                    <div class="pricing-detail">TikTok + Instagram + YouTube</div>
+                    <ul class="pricing-features">
+                        <li><span class="check">&#10003;</span> Everything in Starter</li>
+                        <li><span class="check">&#10003;</span> Priority creator matching</li>
+                        <li><span class="check">&#10003;</span> Higher volume = more algorithm surface area</li>
+                        <li><span class="check">&#10003;</span> Dedicated account manager</li>
+                        <li><span class="check">&#10003;</span> Monthly performance report</li>
+                    </ul>
+                    <a href="https://cal.com/alvaro.viralux/tts?utm_source=shipcreators&utm_campaign=scale" class="btn btn-primary btn-large">Start Scale &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- VALUE COMPARISON -->
+    <section id="compare">
+        <div class="container">
+            <h2 class="section-title section-center reveal">What $3,000 actually gets you.</h2>
+            <div class="table-wrap reveal" style="margin-top: 40px;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="highlight">ShipCreators Scale</th>
+                            <th>Traditional UGC Agency</th>
+                            <th>Freelance Creators</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly cost</td>
+                            <td class="highlight">$3,000</td>
+                            <td>$10,000&ndash;$20,000</td>
+                            <td>$30,000&ndash;$42,400</td>
+                        </tr>
+                        <tr>
+                            <td>Videos/month</td>
+                            <td class="highlight">200</td>
+                            <td>10&ndash;20</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>Management overhead</td>
+                            <td class="highlight">Zero</td>
+                            <td>High</td>
+                            <td>Very High</td>
+                        </tr>
+                        <tr>
+                            <td>Content ownership</td>
+                            <td class="highlight">Full</td>
+                            <td>Limited</td>
+                            <td>Varies</td>
+                        </tr>
+                        <tr>
+                            <td>Time to first video</td>
+                            <td class="highlight">1 week</td>
+                            <td>4&ndash;6 weeks</td>
+                            <td>2&ndash;4 weeks</td>
+                        </tr>
+                        <tr>
+                            <td>Account setup &amp; management</td>
+                            <td class="highlight">Included</td>
+                            <td>Extra</td>
+                            <td>You figure it out</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ANTI-AI -->
+    <section id="anti-ai">
+        <div class="container">
+            <div class="anti-ai-box reveal">
+                <h2>Real humans. Not AI avatars.</h2>
+                <p>Your customers can tell the difference. AI-generated video content is everywhere &mdash; and it's getting ignored. ShipCreators connects your product with real creators who film authentic, native-feeling content that actually builds trust. No digital clones. No AI voices. No synthetic faces. Real people, real content.</p>
+                <div class="badge">[ 100% HUMAN CREATORS ]</div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container section-center">
+            <h2 class="section-title reveal">Common questions.</h2>
+            <div class="faq-list" style="margin-top: 40px;">
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Do I need existing social media accounts?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>No. We create and manage your TikTok, Instagram, and YouTube accounts as part of the service. You show up to ready-to-go profiles.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        What kind of creators do you use?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Real people across TikTok, Instagram, and YouTube with audiences in your product's niche. We source and vet them for you.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        How fast will I get my first videos?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>First batch typically within 5&ndash;7 business days after onboarding.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Do I own the videos?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>100%. Use them for Meta ads, Google ads, your landing page, email, anywhere.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        What if I don't like a video?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>We work with you to ensure quality. If a video doesn't meet standards, we replace it.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Can I cancel anytime?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes. Month-to-month. No contracts. No cancellation fees.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="reveal">Stop building in silence.</h2>
+            <p class="sub reveal">Start shipping your marketing.</p>
+            <p class="detail reveal">$1,500/month for 60 videos. $3,000/month for 200. Delivered weekly. We handle everything &mdash; including building your accounts from scratch.</p>
+            <div class="reveal">
+                <a href="https://cal.com/alvaro.viralux/tts?utm_source=shipcreators&utm_campaign=final-cta" class="btn btn-primary btn-xl">Get Started Today &rarr;</a>
+            </div>
+            <p class="small-text reveal">or email <a href="mailto:alvaro@viralux.media">alvaro@viralux.media</a> with questions</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <a href="#" class="logo">ship<span>creators</span></a>
+                    <p class="tagline">Real creator videos for founders who ship.</p>
+                </div>
+                <div class="footer-right">
+                    <a href="mailto:alvaro@viralux.media">Contact</a>
+                </div>
+            </div>
+            <p class="footer-fine">ShipCreators is a Viralux Media product. All creator videos are produced by real humans.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const wasOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+            // Open clicked (if it wasn't already open)
+            if (!wasOpen) item.classList.add('open');
+        }
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    // Stagger siblings
+                    const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+                    let delay = 0;
+                    siblings.forEach(sib => {
+                        if (sib === entry.target) {
+                            entry.target.style.transitionDelay = delay + 'ms';
+                        }
+                        delay += 80;
+                    });
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
