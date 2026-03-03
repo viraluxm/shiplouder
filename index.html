@@ -831,65 +831,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* ===== CAL MODAL ===== */
-        .cal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        .cal-overlay.active {
-            display: flex;
-        }
-
-        .cal-modal {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            height: 85vh;
-            max-height: 750px;
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
-        }
-
-        .cal-modal iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .cal-close {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            z-index: 10;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s ease;
-        }
-
-        .cal-close:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
     </style>
 </head>
 <body>
@@ -999,7 +940,7 @@
                         <li><span class="check">&#10003;</span> Weekly delivery</li>
                         <li><span class="check">&#10003;</span> Use for paid ads anywhere</li>
                     </ul>
-                    <a href="#" onclick="openCal('starter'); return false;" class="btn btn-ghost btn-large">Start Starter &rarr;</a>
+                    <a href="STRIPE_LINK_STARTER" target="_blank" rel="noopener" class="btn btn-ghost btn-large">Start Starter &rarr;</a>
                 </div>
 
                 <!-- SCALE -->
@@ -1019,7 +960,7 @@
                         <li><span class="check">&#10003;</span> Dedicated account manager</li>
                         <li><span class="check">&#10003;</span> Monthly performance report</li>
                     </ul>
-                    <a href="#" onclick="openCal('scale'); return false;" class="btn btn-primary btn-large">Start Scale &rarr;</a>
+                    <a href="STRIPE_LINK_SCALE" target="_blank" rel="noopener" class="btn btn-primary btn-large">Start Scale &rarr;</a>
                 </div>
             </div>
         </div>
@@ -1171,7 +1112,7 @@
             <p class="sub reveal">Start shipping your marketing.</p>
             <p class="detail reveal">$1,500/month for 60 videos. $3,000/month for 200. Delivered weekly. We handle everything &mdash; including building your accounts from scratch.</p>
             <div class="reveal">
-                <a href="#" onclick="openCal('final-cta'); return false;" class="btn btn-primary btn-xl">Get Started Today &rarr;</a>
+                <a href="#pricing" class="btn btn-primary btn-xl">Get Started Today &rarr;</a>
             </div>
             <p class="small-text reveal">or email <a href="mailto:alvaro@viralux.media">alvaro@viralux.media</a> with questions</p>
         </div>
@@ -1225,45 +1166,7 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
         revealElements.forEach(el => observer.observe(el));
-
-        // Cal.com modal
-        const CAL_BASE = 'https://cal.com/alvaro.viralux/tts';
-
-        function openCal(campaign) {
-            const url = CAL_BASE + '?utm_source=shiplouder&utm_campaign=' + campaign + '&embed=true';
-            const overlay = document.getElementById('cal-overlay');
-            const iframe = document.getElementById('cal-iframe');
-            iframe.src = url;
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCal() {
-            const overlay = document.getElementById('cal-overlay');
-            const iframe = document.getElementById('cal-iframe');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-            iframe.src = '';
-        }
-
-        // Close on overlay click (not modal itself)
-        document.getElementById('cal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) closeCal();
-        });
-
-        // Close on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeCal();
-        });
     </script>
-
-    <!-- Cal.com Modal Overlay -->
-    <div class="cal-overlay" id="cal-overlay">
-        <div class="cal-modal">
-            <button class="cal-close" onclick="closeCal()" aria-label="Close">&times;</button>
-            <iframe id="cal-iframe" title="Book a call"></iframe>
-        </div>
-    </div>
 
 </body>
 </html>

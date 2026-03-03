@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In — Book Your Onboarding | Ship Louder</title>
+    <meta name="description" content="Welcome to Ship Louder. Book your required onboarding call to get your creators briefed and first videos live within 7 days.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111111;
+            --border: #1e1e1e;
+            --green: #22c55e;
+            --green-glow: rgba(34, 197, 94, 0.4);
+            --text: #f5f5f5;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'DM Sans', sans-serif;
+            --max-width: 800px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Nav */
+        nav {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: var(--mono);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--green);
+        }
+
+        /* Hero */
+        .confirmation-hero {
+            padding: 80px 0 48px;
+            text-align: center;
+            position: relative;
+        }
+
+        .confirmation-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .success-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid var(--green);
+            margin-bottom: 32px;
+        }
+
+        .success-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--green);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .confirmation-hero h1 {
+            font-family: var(--mono);
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .confirmation-hero .sub {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 12px;
+            line-height: 1.7;
+        }
+
+        /* Required badge */
+        .required-badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #000;
+            background: var(--green);
+            padding: 6px 16px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            margin-bottom: 40px;
+        }
+
+        /* Cal embed */
+        .cal-section {
+            padding: 0 0 80px;
+        }
+
+        .cal-embed-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 650px;
+        }
+
+        .cal-embed-wrapper iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            display: block;
+        }
+
+        /* What happens next */
+        .next-steps {
+            padding: 0 0 80px;
+        }
+
+        .next-steps h2 {
+            font-family: var(--mono);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .next-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        .next-step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--green);
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 14px;
+        }
+
+        .next-step h3 {
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .next-step p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .conf-footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            text-align: center;
+        }
+
+        .conf-footer p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .conf-footer a {
+            color: var(--text-muted);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .conf-footer a:hover {
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-hero {
+                padding: 60px 0 36px;
+            }
+
+            .steps-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .cal-embed-wrapper iframe {
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">ship<span>louder</span></a>
+        </div>
+    </nav>
+
+    <section class="confirmation-hero">
+        <div class="container">
+            <div class="success-icon fade-in delay-1">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h1 class="fade-in delay-2">You're in. Now let's make it count.</h1>
+            <p class="sub fade-in delay-3">Book your required onboarding call below &mdash; this is how we get your creators briefed and your first videos live within 7 days.</p>
+            <div class="required-badge fade-in delay-4">&#9888; REQUIRED &mdash; BOOK YOUR ONBOARDING CALL</div>
+        </div>
+    </section>
+
+    <section class="cal-section">
+        <div class="container">
+            <div class="cal-embed-wrapper fade-in delay-5">
+                <!-- Replace CAL_LINK below with your actual Cal.com scheduling URL -->
+                <iframe src="CAL_LINK" title="Book your onboarding call"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="next-steps">
+        <div class="container">
+            <h2>What happens after you book:</h2>
+            <div class="steps-row">
+                <div class="next-step">
+                    <div class="next-step-num">1</div>
+                    <h3>Onboarding call</h3>
+                    <p>We learn about your product, audience, and goals. 30 minutes.</p>
+                </div>
+                <div class="next-step">
+                    <div class="next-step-num">2</div>
+                    <h3>Creator matching</h3>
+                    <p>We source and brief creators in your niche within 48 hours.</p>
+                </div>
+                <div class="next-step">
+                    <div class="next-step-num">3</div>
+                    <h3>First videos drop</h3>
+                    <p>Your first batch of creator videos delivered within 5&ndash;7 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="conf-footer">
+        <div class="container">
+            <p>Questions? Email <a href="mailto:alvaro@viralux.media">alvaro@viralux.media</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
