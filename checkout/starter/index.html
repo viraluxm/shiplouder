@@ -236,10 +236,7 @@
 
                 const { clientSecret } = await res.json();
 
-                const checkout = await stripe.initEmbeddedCheckout({
-                    clientSecret,
-                    appearance: { theme: 'night' },
-                });
+                const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
                 loadingEl.style.display = 'none';
                 checkout.mount('#checkout-mount');
             } catch (err) {
