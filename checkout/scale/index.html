@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout — Scale Package | Ship Louder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111111;
+            --border: #1e1e1e;
+            --green: #22c55e;
+            --green-glow: rgba(34, 197, 94, 0.4);
+            --text: #f5f5f5;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'DM Sans', sans-serif;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--mono);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .logo span { color: var(--green); }
+        .back-link {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--text); }
+
+        .checkout-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 104px 24px 60px;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .order-summary {
+            background: var(--bg-card);
+            border: 1px solid var(--green);
+            border-radius: 12px;
+            padding: 36px 32px;
+            position: sticky;
+            top: 88px;
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.1), 0 0 80px rgba(34, 197, 94, 0.05);
+        }
+        .popular-badge {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #000;
+            background: var(--green);
+            padding: 5px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        .order-label {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--green);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .order-plan {
+            font-family: var(--mono);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .order-price {
+            font-family: var(--mono);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .order-per-video {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+        .order-divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 0 0 20px;
+        }
+        .order-features {
+            list-style: none;
+        }
+        .order-features li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .order-features li .check {
+            color: var(--green);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .checkout-form-area {
+            min-height: 400px;
+        }
+        .checkout-form-area h2 {
+            font-family: var(--mono);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-muted);
+        }
+        #checkout-mount {
+            min-height: 350px;
+        }
+
+        .loading-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            color: var(--text-dim);
+            font-family: var(--mono);
+            font-size: 0.9rem;
+        }
+
+        .error-state {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 24px;
+            color: #ef4444;
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+        }
+
+        @media (max-width: 800px) {
+            .checkout-wrapper {
+                grid-template-columns: 1fr;
+                padding: 88px 16px 40px;
+                gap: 24px;
+            }
+            .order-summary {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">ship<span>louder</span></a>
+            <a href="/" class="back-link">&larr; Back</a>
+        </div>
+    </nav>
+
+    <div class="checkout-wrapper">
+        <div class="order-summary">
+            <div class="popular-badge">MOST POPULAR</div>
+            <div class="order-label">Your Order</div>
+            <div class="order-plan">Scale</div>
+            <div class="order-price">$1,500</div>
+            <div class="order-per-video">$15/video &middot; one-time</div>
+            <hr class="order-divider">
+            <ul class="order-features">
+                <li><span class="check">&#10003;</span> 100 creator videos</li>
+                <li><span class="check">&#10003;</span> TikTok + Instagram + YouTube</li>
+                <li><span class="check">&#10003;</span> Handpicked creators for your niche</li>
+                <li><span class="check">&#10003;</span> Full content ownership</li>
+                <li><span class="check">&#10003;</span> Delivered within 1 week</li>
+                <li><span class="check">&#10003;</span> Account setup included</li>
+            </ul>
+        </div>
+
+        <div class="checkout-form-area">
+            <h2>Payment details</h2>
+            <div id="checkout-mount">
+                <div class="loading-state" id="loading">Initializing secure checkout...</div>
+            </div>
+            <div class="error-state" id="error-msg"></div>
+        </div>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        (async () => {
+            const errorEl = document.getElementById('error-msg');
+            const loadingEl = document.getElementById('loading');
+
+            try {
+                const configRes = await fetch('/api/config');
+                const { publishableKey } = await configRes.json();
+                const stripe = Stripe(publishableKey);
+
+                const res = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ package: 'scale' }),
+                });
+
+                if (!res.ok) {
+                    throw new Error((await res.json()).error || 'Server error');
+                }
+
+                const { clientSecret } = await res.json();
+
+                const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
+                loadingEl.style.display = 'none';
+                checkout.mount('#checkout-mount');
+            } catch (err) {
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+                errorEl.textContent = 'Could not load checkout: ' + err.message;
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -598,14 +598,39 @@
         }
 
         /* ===== ANTI-AI ===== */
+        .anti-ai-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .anti-ai-videos {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .anti-ai-videos video {
+            width: 160px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
         .anti-ai-box {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 48px;
             max-width: 720px;
-            margin: 0 auto;
             text-align: center;
+            flex: 1;
+            min-width: 0;
         }
 
         .anti-ai-box h2 {
@@ -627,6 +652,23 @@
 
         .anti-ai-box .badge {
             margin-bottom: 0;
+        }
+
+        @media (max-width: 900px) {
+            .anti-ai-layout {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .anti-ai-videos {
+                flex-direction: row;
+                gap: 12px;
+            }
+
+            .anti-ai-videos video {
+                width: 120px;
+                height: 160px;
+            }
         }
 
         /* ===== FAQ ===== */
@@ -871,6 +913,29 @@
 
     <hr class="divider">
 
+    <!-- ANTI-AI -->
+    <section id="anti-ai">
+        <div class="container">
+            <div class="anti-ai-layout reveal">
+                <div class="anti-ai-videos">
+                    <video src="cecelie%20calAI1.mov" autoplay muted loop playsinline></video>
+                    <video src="Emily%20superhuman1.mov" autoplay muted loop playsinline></video>
+                </div>
+                <div class="anti-ai-box">
+                    <h2>Real humans. Not AI avatars.</h2>
+                    <p>Your customers can tell the difference. AI-generated video content is everywhere &mdash; and it's getting ignored. Ship Louder connects your product with real creators who film authentic, native-feeling content that actually builds trust. No digital clones. No AI voices. No synthetic faces. Real people, real content.</p>
+                    <div class="badge">[ 100% HUMAN CREATORS ]</div>
+                </div>
+                <div class="anti-ai-videos">
+                    <video src="malcom%20opal1.mov" autoplay muted loop playsinline></video>
+                    <video src="Michelle%20rocket%20money1.mov" autoplay muted loop playsinline></video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
     <!-- PROBLEM -->
     <section id="problem">
         <div class="container">
@@ -941,7 +1006,7 @@
                     <div class="pricing-detail"><strong>20</strong> creator videos</div>
                     <div class="pricing-detail">TikTok + Instagram + YouTube</div>
                     <p class="pricing-description">Perfect for a new app or product launch. Real human creators who get your product, filmed authentically and posted across TikTok, Instagram, and YouTube.</p>
-                    <a href="https://buy.stripe.com/5kQdR9cit5fge5B9zKcbC00" class="btn btn-ghost btn-large">Get Started &rarr;</a>
+                    <a href="/checkout/starter" class="btn btn-ghost btn-large">Get Started &rarr;</a>
                 </div>
 
                 <!-- SCALE -->
@@ -953,7 +1018,7 @@
                     <div class="pricing-detail"><strong>100</strong> creator videos</div>
                     <div class="pricing-detail">TikTok + Instagram + YouTube</div>
                     <p class="pricing-description">For founders who&rsquo;ve validated their app and are ready to flood every platform with authentic creator content. Handpicked creators matched to your product category.</p>
-                    <a href="https://buy.stripe.com/8x2aEX1DP6jk2mTh2ccbC01" class="btn btn-primary btn-large">Get Scale &rarr;</a>
+                    <a href="/checkout/scale" class="btn btn-primary btn-large">Get Scale &rarr;</a>
                 </div>
             </div>
 
@@ -1016,19 +1081,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </section>
-
-    <hr class="divider">
-
-    <!-- ANTI-AI -->
-    <section id="anti-ai">
-        <div class="container">
-            <div class="anti-ai-box reveal">
-                <h2>Real humans. Not AI avatars.</h2>
-                <p>Your customers can tell the difference. AI-generated video content is everywhere &mdash; and it's getting ignored. Ship Louder connects your product with real creators who film authentic, native-feeling content that actually builds trust. No digital clones. No AI voices. No synthetic faces. Real people, real content.</p>
-                <div class="badge">[ 100% HUMAN CREATORS ]</div>
             </div>
         </div>
     </section>
