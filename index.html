@@ -541,6 +541,39 @@
             margin-top: auto;
         }
 
+        /* ===== COMPARISON TOGGLE ===== */
+        .compare-toggle {
+            display: inline-flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 32px;
+        }
+
+        .compare-toggle button {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .compare-toggle button.active {
+            background: var(--green);
+            color: #000;
+            font-weight: 600;
+        }
+
+        .compare-toggle button:not(.active):hover {
+            color: var(--text-muted);
+        }
+
         /* ===== COMPARISON TABLE ===== */
         .table-wrap {
             overflow-x: auto;
@@ -1030,14 +1063,18 @@
 
     <!-- VALUE COMPARISON -->
     <section id="compare">
-        <div class="container">
-            <h2 class="section-title section-center reveal">What $3,000 actually gets you.</h2>
+        <div class="container section-center">
+            <div class="compare-toggle reveal">
+                <button onclick="setComparePlan('starter')">Starter</button>
+                <button class="active" onclick="setComparePlan('scale')">Scale</button>
+            </div>
+            <h2 class="section-title section-center reveal" id="compare-headline">What $1,500 actually gets you.</h2>
             <div class="table-wrap reveal" style="margin-top: 40px;">
                 <table class="compare-table">
                     <thead>
                         <tr>
                             <th></th>
-                            <th class="highlight">Ship Louder Scale</th>
+                            <th class="highlight" id="compare-col-header">Ship Louder Scale</th>
                             <th>Traditional UGC Agency</th>
                             <th>Freelance Creators</th>
                         </tr>
@@ -1045,15 +1082,15 @@
                     <tbody>
                         <tr>
                             <td>Monthly cost</td>
-                            <td class="highlight">$3,000</td>
-                            <td>$10,000&ndash;$20,000</td>
-                            <td>$30,000&ndash;$42,400</td>
+                            <td class="highlight" id="compare-cost">$1,500</td>
+                            <td id="compare-agency-cost">$10,000&ndash;$20,000</td>
+                            <td id="compare-freelance-cost">$15,000&ndash;$21,200</td>
                         </tr>
                         <tr>
                             <td>Videos/month</td>
-                            <td class="highlight">200</td>
+                            <td class="highlight" id="compare-videos">100</td>
                             <td>10&ndash;20</td>
-                            <td>200</td>
+                            <td id="compare-freelance-videos">100</td>
                         </tr>
                         <tr>
                             <td>Management overhead</td>
@@ -1183,6 +1220,42 @@
 
     <script>
         // FAQ toggle
+        // Comparison toggle
+        function setComparePlan(plan) {
+            var data = {
+                starter: {
+                    headline: 'What $500 actually gets you.',
+                    colHeader: 'Ship Louder Starter',
+                    cost: '$500',
+                    videos: '20',
+                    agencyCost: '$3,000\u2013$4,000',
+                    freelanceCost: '$3,000\u2013$4,240',
+                    freelanceVideos: '20'
+                },
+                scale: {
+                    headline: 'What $1,500 actually gets you.',
+                    colHeader: 'Ship Louder Scale',
+                    cost: '$1,500',
+                    videos: '100',
+                    agencyCost: '$10,000\u2013$20,000',
+                    freelanceCost: '$15,000\u2013$21,200',
+                    freelanceVideos: '100'
+                }
+            };
+            var d = data[plan];
+            document.getElementById('compare-headline').textContent = d.headline;
+            document.getElementById('compare-col-header').textContent = d.colHeader;
+            document.getElementById('compare-cost').textContent = d.cost;
+            document.getElementById('compare-videos').textContent = d.videos;
+            document.getElementById('compare-agency-cost').textContent = d.agencyCost;
+            document.getElementById('compare-freelance-cost').textContent = d.freelanceCost;
+            document.getElementById('compare-freelance-videos').textContent = d.freelanceVideos;
+
+            var btns = document.querySelectorAll('.compare-toggle button');
+            btns.forEach(function(b) { b.classList.remove('active'); });
+            btns[plan === 'starter' ? 0 : 1].classList.add('active');
+        }
+
         function toggleFaq(btn) {
             const item = btn.parentElement;
             const wasOpen = item.classList.contains('open');
