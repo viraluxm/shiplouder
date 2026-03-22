@@ -311,7 +311,12 @@
             btn.textContent = 'Sending...';
             errorEl.style.display = 'none';
 
-            const sessionId = new URLSearchParams(window.location.search).get('session_id') || '';
+            const params = new URLSearchParams(window.location.search);
+            const sessionId = params.get('session_id') || '';
+            const utmS = params.get('utm_source');
+            const utmM = params.get('utm_medium');
+            const utmC = params.get('utm_campaign');
+            const source = (utmS || utmM || utmC) ? [utmS, utmM, utmC].filter(Boolean).join(' / ') : 'Direct';
 
             try {
                 const res = await fetch('https://api.web3forms.com/submit', {
@@ -326,6 +331,7 @@
                         do_not_cover: document.getElementById('avoid').value || '(none)',
                         ideal_customer: document.getElementById('ideal-customer').value,
                         stripe_session_id: sessionId,
+                        source: source,
                     }),
                 });
 

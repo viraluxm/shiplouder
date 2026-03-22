@@ -1357,6 +1357,16 @@
     <script>
         // FAQ toggle
         // Lead magnet form
+        // UTM tracking
+        function getUtmSource() {
+            var params = new URLSearchParams(window.location.search);
+            var s = params.get('utm_source');
+            var m = params.get('utm_medium');
+            var c = params.get('utm_campaign');
+            if (s || m || c) return [s, m, c].filter(Boolean).join(' / ');
+            return 'Direct';
+        }
+
         document.getElementById('lead-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             var btn = document.getElementById('lead-btn');
@@ -1375,6 +1385,7 @@
                         from_name: 'ShipLouder Free Video Form',
                         email: document.getElementById('lead-email').value,
                         app_url: document.getElementById('lead-url').value,
+                        source: getUtmSource(),
                     }),
                 });
                 if (!res.ok) throw new Error('Server error');
