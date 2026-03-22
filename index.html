@@ -704,6 +704,123 @@
             }
         }
 
+        /* ===== FREE VIDEO LEAD MAGNET ===== */
+        .lead-magnet-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 48px;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .lead-magnet-box h2 {
+            font-family: var(--mono);
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .lead-magnet-box .lead-sub {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lead-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .lead-form input {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 180px;
+            transition: border-color 0.2s ease;
+        }
+
+        .lead-form input:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .lead-form input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .lead-form button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: var(--green);
+            color: #000;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .lead-form button:hover {
+            background: #2dd868;
+            box-shadow: 0 0 24px var(--green-glow);
+            transform: translateY(-1px);
+        }
+
+        .lead-form button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .lead-confirmation {
+            display: none;
+            font-family: var(--mono);
+            font-size: 1rem;
+            color: var(--green);
+            padding: 16px 0 4px;
+        }
+
+        .lead-error {
+            display: none;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: #ef4444;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .lead-magnet-box {
+                padding: 32px 24px;
+            }
+            .lead-form {
+                flex-direction: column;
+            }
+            .lead-form input {
+                min-width: 0;
+            }
+        }
+
         /* ===== FAQ ===== */
         .faq-list {
             max-width: 700px;
@@ -938,7 +1055,7 @@
             <p class="hero-sub fade-in delay-3">Real creators. Real videos. Delivered weekly. No agency BS.</p>
             <div class="hero-ctas fade-in delay-4">
                 <a href="#pricing" class="btn btn-primary btn-large">Start Growing &rarr;</a>
-                <a href="#how-it-works" class="btn btn-ghost btn-large">See How It Works &darr;</a>
+                <a href="#free-video" class="btn btn-ghost btn-large">Get a Free Video &rarr;</a>
             </div>
             <p class="hero-proof fade-in delay-5">Trusted by founders who are done waiting for organic growth</p>
         </div>
@@ -986,6 +1103,25 @@
                     <h3>Agencies want $10K/month</h3>
                     <p>For a solo founder, that's not a marketing budget. That's your runway.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- FREE VIDEO LEAD MAGNET -->
+    <section id="free-video">
+        <div class="container">
+            <div class="lead-magnet-box reveal">
+                <h2>See it before you buy it.</h2>
+                <p class="lead-sub">Drop your app link and email. We'll send you a free creator video &mdash; no strings, no call, no catch.</p>
+                <form class="lead-form" id="lead-form">
+                    <input type="email" id="lead-email" placeholder="you@company.com" required>
+                    <input type="url" id="lead-url" placeholder="https://yourapp.com" required>
+                    <button type="submit" id="lead-btn">Get My Free Video &rarr;</button>
+                </form>
+                <div class="lead-error" id="lead-error"></div>
+                <div class="lead-confirmation" id="lead-confirmation">We're on it. Check your inbox in 48 hours.</div>
             </div>
         </div>
     </section>
@@ -1220,6 +1356,39 @@
 
     <script>
         // FAQ toggle
+        // Lead magnet form
+        document.getElementById('lead-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var btn = document.getElementById('lead-btn');
+            var errorEl = document.getElementById('lead-error');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            errorEl.style.display = 'none';
+
+            try {
+                var res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: '47ddf88c-91b1-49cf-8543-bd62d85f0036',
+                        subject: 'New Free Video Request',
+                        from_name: 'ShipLouder Free Video Form',
+                        email: document.getElementById('lead-email').value,
+                        app_url: document.getElementById('lead-url').value,
+                    }),
+                });
+                if (!res.ok) throw new Error('Server error');
+
+                document.getElementById('lead-form').style.display = 'none';
+                document.getElementById('lead-confirmation').style.display = 'block';
+            } catch (err) {
+                errorEl.textContent = 'Something went wrong. Please try again or email team@viralux.media.';
+                errorEl.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Get My Free Video \u2192';
+            }
+        });
+
         // Comparison toggle
         function setComparePlan(plan) {
             var data = {

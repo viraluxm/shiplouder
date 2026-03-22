@@ -313,19 +313,20 @@
 
             const sessionId = new URLSearchParams(window.location.search).get('session_id') || '';
 
-            const data = {
-                product_url: document.getElementById('product-url').value,
-                selling_point: document.getElementById('selling-point').value,
-                avoid: document.getElementById('avoid').value,
-                ideal_customer: document.getElementById('ideal-customer').value,
-                session_id: sessionId,
-            };
-
             try {
-                const res = await fetch('/api/onboarding', {
+                const res = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
+                    body: JSON.stringify({
+                        access_key: '47ddf88c-91b1-49cf-8543-bd62d85f0036',
+                        subject: 'New ShipLouder Customer Onboarding',
+                        from_name: 'ShipLouder Onboarding Form',
+                        product_url: document.getElementById('product-url').value,
+                        main_selling_point: document.getElementById('selling-point').value,
+                        do_not_cover: document.getElementById('avoid').value || '(none)',
+                        ideal_customer: document.getElementById('ideal-customer').value,
+                        stripe_session_id: sessionId,
+                    }),
                 });
 
                 if (!res.ok) throw new Error('Server error');
