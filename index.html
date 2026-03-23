@@ -281,6 +281,88 @@
             font-family: var(--sans);
         }
 
+        /* Hero inline form — mobile only */
+        .hero-inline-form {
+            display: none;
+        }
+
+        .hero-inline-label {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .hero-lead-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 360px;
+            margin: 0 auto 8px;
+        }
+
+        .hero-lead-form input {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            width: 100%;
+            transition: border-color 0.2s ease;
+        }
+
+        .hero-lead-form input:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .hero-lead-form input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .hero-lead-form button {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 14px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: var(--green);
+            color: #000;
+            transition: all 0.25s ease;
+            width: 100%;
+        }
+
+        .hero-lead-form button:hover {
+            background: #2dd868;
+            box-shadow: 0 0 24px var(--green-glow);
+        }
+
+        .hero-lead-form button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .hero-lead-error {
+            display: none;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: #ef4444;
+            margin-top: 4px;
+        }
+
+        .hero-lead-confirmation {
+            display: none;
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            color: var(--green);
+            padding: 12px 0;
+        }
+
         /* ===== SECTION STYLES ===== */
         section {
             padding: 100px 0;
@@ -976,7 +1058,25 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero {
-                padding: 130px 0 80px;
+                padding: 100px 0 48px;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+                margin-bottom: 16px;
+            }
+
+            .hero-sub {
+                font-size: 0.95rem;
+                margin-bottom: 24px;
+            }
+
+            .badge {
+                margin-bottom: 20px;
+            }
+
+            .hero-ctas {
+                margin-bottom: 20px;
             }
 
             section {
@@ -999,6 +1099,15 @@
             .hero-ctas .btn {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .hero-inline-form {
+                display: block;
+                margin-bottom: 16px;
+            }
+
+            .hero-proof {
+                font-size: 0.75rem;
             }
 
             .anti-ai-box {
@@ -1056,6 +1165,16 @@
             <div class="hero-ctas fade-in delay-4">
                 <a href="#pricing" class="btn btn-primary btn-large">Start Growing &rarr;</a>
                 <a href="#free-video" class="btn btn-ghost btn-large">Get a Free Video &rarr;</a>
+            </div>
+            <div class="hero-inline-form fade-in delay-5">
+                <p class="hero-inline-label">Get a free creator video — no strings attached.</p>
+                <form class="hero-lead-form" id="hero-lead-form">
+                    <input type="email" id="hero-lead-email" placeholder="you@company.com" required>
+                    <input type="url" id="hero-lead-url" placeholder="https://yourapp.com" required>
+                    <button type="submit" id="hero-lead-btn">Get My Free Video &rarr;</button>
+                </form>
+                <div class="hero-lead-error" id="hero-lead-error"></div>
+                <div class="hero-lead-confirmation" id="hero-lead-confirmation">We're on it. Check your inbox in 48 hours.</div>
             </div>
             <p class="hero-proof fade-in delay-5">Trusted by founders who are done waiting for organic growth</p>
         </div>
@@ -1367,6 +1486,42 @@
             return 'Direct';
         }
 
+        // Hero inline lead form (mobile)
+        document.getElementById('hero-lead-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var btn = document.getElementById('hero-lead-btn');
+            var errorEl = document.getElementById('hero-lead-error');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            errorEl.style.display = 'none';
+
+            try {
+                var res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: '47ddf88c-91b1-49cf-8543-bd62d85f0036',
+                        subject: 'New Free Video Request (Hero)',
+                        from_name: 'ShipLouder Free Video Form',
+                        email: document.getElementById('hero-lead-email').value,
+                        app_url: document.getElementById('hero-lead-url').value,
+                        source: getUtmSource(),
+                    }),
+                });
+                if (!res.ok) throw new Error('Server error');
+
+                document.getElementById('hero-lead-form').style.display = 'none';
+                document.querySelector('.hero-inline-label').style.display = 'none';
+                document.getElementById('hero-lead-confirmation').style.display = 'block';
+            } catch (err) {
+                errorEl.textContent = 'Something went wrong. Try again.';
+                errorEl.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Get My Free Video \u2192';
+            }
+        });
+
+        // Lead form (full section)
         document.getElementById('lead-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             var btn = document.getElementById('lead-btn');
