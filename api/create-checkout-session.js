@@ -17,8 +17,8 @@ module.exports = async (req, res) => {
   const PACKAGES = {
     starter: {
       priceId: process.env.STRIPE_STARTER_PRICE_ID || null,
-      name: 'Small Package — 20 Creator Videos',
-      amount: 50000,
+      name: 'Small Package — 50 Creator Videos',
+      amount: 75000,
     },
   };
 
