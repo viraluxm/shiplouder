@@ -17,20 +17,15 @@ module.exports = async (req, res) => {
   const PACKAGES = {
     starter: {
       priceId: process.env.STRIPE_STARTER_PRICE_ID || null,
-      name: 'Starter Package',
+      name: 'Small Package — 20 Creator Videos',
       amount: 50000,
-    },
-    scale: {
-      priceId: process.env.STRIPE_SCALE_PRICE_ID || null,
-      name: 'Scale Package',
-      amount: 150000,
     },
   };
 
   const { package: pkg } = req.body;
 
   if (!pkg || !PACKAGES[pkg]) {
-    return res.status(400).json({ error: 'Invalid package. Use "starter" or "scale".' });
+    return res.status(400).json({ error: 'Invalid package. Use "starter".' });
   }
 
   const selected = PACKAGES[pkg];
