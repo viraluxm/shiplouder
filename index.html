@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ship Louder — Real Creator Videos for Founders Who Ship</title>
-    <meta name="description" content="You built it with AI. Let real people sell it. 60-200 real creator videos/month delivered weekly. No agency BS.">
+    <title>Ship Louder — 500+ Creator Videos for Scaling Apps</title>
+    <meta name="description" content="We run full UGC campaigns — 500+ real creator videos posted across TikTok, Instagram, and YouTube. Apply to get your first 50 free.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -89,12 +89,6 @@
         .delay-5 { animation-delay: 0.5s; }
         .delay-6 { animation-delay: 0.6s; }
         .delay-7 { animation-delay: 0.7s; }
-
-        /* Strikethrough animation */
-        @keyframes strikeReveal {
-            from { width: 0; }
-            to { width: 100%; }
-        }
 
         .container {
             max-width: var(--max-width);
@@ -236,24 +230,6 @@
             margin: 0 auto 24px;
         }
 
-        .hero h1 .line-struck {
-            position: relative;
-            display: inline;
-            color: var(--text-dim);
-        }
-
-        .hero h1 .line-struck::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            height: 3px;
-            background: var(--red-muted);
-            width: 100%;
-            animation: strikeReveal 0.8s ease-out 0.8s forwards;
-            width: 0;
-        }
-
         .hero h1 .line-green {
             color: var(--green);
         }
@@ -261,12 +237,10 @@
         .hero-sub {
             font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--text-muted);
-            max-width: 560px;
+            max-width: 620px;
             margin: 0 auto 40px;
             font-weight: 400;
         }
-
-        /* hero-ctas removed — single CTA form in hero now */
 
         .hero-proof {
             font-size: 0.85rem;
@@ -274,53 +248,124 @@
             font-family: var(--sans);
         }
 
-        /* Hero inline form — always visible */
-        .hero-inline-form {
-            display: block;
-            margin-bottom: 16px;
+        .hero-lead-micro {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            max-width: 420px;
+            margin: 12px auto 0;
         }
 
-        .hero-inline-label {
+        /* ===== APPLICATION POPUP MODAL ===== */
+        .app-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .app-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .app-modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 48px 40px;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .app-modal h2 {
+            font-family: var(--mono);
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .app-modal .app-sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+        }
+
+        .app-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: left;
+        }
+
+        .app-form label {
             font-family: var(--mono);
             font-size: 0.8rem;
+            font-weight: 500;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: -8px;
         }
 
-        .hero-lead-form {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            max-width: 560px;
-            margin: 0 auto 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .hero-lead-form input {
-            background: var(--bg-card);
+        .app-form input,
+        .app-form textarea,
+        .app-form select {
+            background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 6px;
             padding: 12px 16px;
             color: var(--text);
             font-family: var(--sans);
             font-size: 0.9rem;
-            flex: 1;
-            min-width: 180px;
+            width: 100%;
             transition: border-color 0.2s ease;
         }
 
-        .hero-lead-form input:focus {
+        .app-form input:focus,
+        .app-form textarea:focus,
+        .app-form select:focus {
             outline: none;
             border-color: var(--green);
             box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
         }
 
-        .hero-lead-form input::placeholder {
+        .app-form input::placeholder,
+        .app-form textarea::placeholder {
             color: var(--text-dim);
         }
 
-        .hero-lead-form button {
+        .app-form select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        .app-form select option {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+
+        .app-form textarea {
+            resize: vertical;
+            min-height: 70px;
+            max-height: 140px;
+        }
+
+        .app-form button[type="submit"] {
             font-family: var(--mono);
             font-size: 0.9rem;
             font-weight: 600;
@@ -331,42 +376,56 @@
             background: var(--green);
             color: #000;
             transition: all 0.25s ease;
-            white-space: nowrap;
+            width: 100%;
+            margin-top: 4px;
         }
 
-        .hero-lead-form button:hover {
+        .app-form button[type="submit"]:hover {
             background: #2dd868;
             box-shadow: 0 0 24px var(--green-glow);
             transform: translateY(-1px);
         }
 
-        .hero-lead-form button:disabled {
+        .app-form button[type="submit"]:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
 
-        .hero-lead-micro {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            max-width: 420px;
-            margin: 8px auto 0;
-        }
-
-        .hero-lead-error {
+        .app-error {
             display: none;
             font-family: var(--mono);
             font-size: 0.8rem;
             color: #ef4444;
             margin-top: 4px;
+            text-align: center;
         }
 
-        .hero-lead-confirmation {
+        .app-confirmation {
             display: none;
             font-family: var(--mono);
             font-size: 0.95rem;
             color: var(--green);
-            padding: 12px 0;
+            padding: 24px 0 8px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .app-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.4rem;
+            color: var(--text-dim);
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .app-close:hover {
+            color: var(--text-muted);
         }
 
         /* ===== EXIT-INTENT POPUP ===== */
@@ -415,15 +474,6 @@
             margin-bottom: 24px;
         }
 
-        .exit-modal .hero-lead-form {
-            max-width: 100%;
-            flex-direction: column;
-        }
-
-        .exit-modal .hero-lead-form input {
-            min-width: 0;
-        }
-
         .exit-dismiss {
             display: inline-block;
             margin-top: 16px;
@@ -463,8 +513,9 @@
             transform: translateY(0);
         }
 
-        .sticky-mobile-cta a {
+        .sticky-mobile-cta button {
             display: block;
+            width: 100%;
             font-family: var(--mono);
             font-size: 0.85rem;
             font-weight: 600;
@@ -472,11 +523,12 @@
             color: #000;
             padding: 12px 24px;
             border-radius: 6px;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
             transition: background 0.2s ease;
         }
 
-        .sticky-mobile-cta a:hover {
+        .sticky-mobile-cta button:hover {
             background: #2dd868;
         }
 
@@ -516,317 +568,6 @@
         .section-center .section-sub {
             margin-left: auto;
             margin-right: auto;
-        }
-
-        /* ===== PROBLEM ===== */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .problem-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 32px;
-            transition: border-color 0.3s ease;
-        }
-
-        .problem-card:hover {
-            border-color: #2a2a2a;
-        }
-
-        .problem-card h3 {
-            font-family: var(--mono);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-
-        .problem-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ===== HOW IT WORKS ===== */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-            margin-bottom: 32px;
-        }
-
-        .step {
-            text-align: center;
-        }
-
-        .step-num {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid var(--green);
-            font-family: var(--mono);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--green);
-            margin-bottom: 20px;
-        }
-
-        .step h3 {
-            font-family: var(--mono);
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .step p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            max-width: 320px;
-            margin: 0 auto;
-        }
-
-        .steps-note {
-            text-align: center;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            font-style: italic;
-            border-top: 1px solid var(--border);
-            padding-top: 24px;
-        }
-
-        /* ===== PRICING ===== */
-        #pricing {
-            padding: 120px 0;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
-            max-width: 780px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 40px 32px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--green);
-            box-shadow: 0 0 40px rgba(34, 197, 94, 0.1), 0 0 80px rgba(34, 197, 94, 0.05);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -13px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #000;
-            background: var(--green);
-            padding: 5px 16px;
-            border-radius: 20px;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-        }
-
-        .pricing-plan {
-            font-family: var(--mono);
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 8px;
-        }
-
-        .pricing-price {
-            font-family: var(--mono);
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-
-        .pricing-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        .pricing-per-video {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            margin-bottom: 24px;
-        }
-
-        .pricing-per-video .cheapest {
-            color: var(--green);
-        }
-
-        .pricing-savings {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--green);
-            background: rgba(34, 197, 94, 0.08);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            padding: 6px 12px;
-            border-radius: 4px;
-            margin-bottom: 24px;
-            display: inline-block;
-        }
-
-        .pricing-detail {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pricing-detail strong {
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        .pricing-description {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 16px 0 24px;
-            line-height: 1.5;
-            flex: 1;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 24px 0;
-            flex: 1;
-        }
-
-        .pricing-features li {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            padding: 6px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .pricing-features li .check {
-            color: var(--green);
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .pricing-card .btn {
-            width: 100%;
-            justify-content: center;
-            margin-top: auto;
-        }
-
-        /* ===== COMPARISON TOGGLE ===== */
-        .compare-toggle {
-            display: inline-flex;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 4px;
-            margin-bottom: 32px;
-        }
-
-        .compare-toggle button {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            font-weight: 500;
-            padding: 8px 20px;
-            border: none;
-            border-radius: 6px;
-            background: transparent;
-            color: var(--text-dim);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .compare-toggle button.active {
-            background: var(--green);
-            color: #000;
-            font-weight: 600;
-        }
-
-        .compare-toggle button:not(.active):hover {
-            color: var(--text-muted);
-        }
-
-        /* ===== COMPARISON TABLE ===== */
-        .table-wrap {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: var(--bg-card);
-        }
-
-        .compare-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            min-width: 600px;
-        }
-
-        .compare-table thead th {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: left;
-            padding: 18px 20px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .compare-table thead th:first-child {
-            color: var(--text-dim);
-        }
-
-        .compare-table thead th.highlight {
-            color: var(--green);
-        }
-
-        .compare-table tbody td {
-            padding: 14px 20px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-muted);
-            vertical-align: top;
-        }
-
-        .compare-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .compare-table tbody td:first-child {
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .compare-table tbody td.highlight {
-            color: var(--green);
-            font-weight: 500;
         }
 
         /* ===== ANTI-AI ===== */
@@ -903,121 +644,258 @@
             }
         }
 
-        /* ===== FREE VIDEO LEAD MAGNET ===== */
-        .lead-magnet-box {
+        /* ===== HOW IT WORKS ===== */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            margin-bottom: 32px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--green);
+            font-family: var(--mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            font-family: var(--mono);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .steps-note {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        /* ===== PRICING ===== */
+        #pricing {
+            padding: 120px 0;
+        }
+
+        .pricing-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 48px;
-            max-width: 640px;
+            padding: 40px 32px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--green);
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.1), 0 0 80px rgba(34, 197, 94, 0.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #000;
+            background: var(--green);
+            padding: 5px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .pricing-plan {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-family: var(--mono);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .pricing-per-video {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+            flex: 1;
+        }
+
+        .pricing-features li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pricing-features li .check {
+            color: var(--green);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        .pricing-value {
+            text-align: center;
+            margin-top: 32px;
+            font-family: var(--mono);
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-value strong {
+            color: var(--green);
+        }
+
+        .pricing-small-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        .pricing-small-link a {
+            color: var(--text-dim);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .pricing-small-link a:hover {
+            color: var(--text-muted);
+        }
+
+        /* ===== SELF-SERVE SECTION ===== */
+        #self-serve {
+            padding: 80px 0;
+        }
+
+        .self-serve-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px 32px;
+            max-width: 440px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .lead-magnet-box h2 {
-            font-family: var(--mono);
-            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
-            font-weight: 700;
-            margin-bottom: 12px;
+        .self-serve-card .pricing-plan {
+            margin-bottom: 8px;
         }
 
-        .lead-magnet-box .lead-sub {
+        .self-serve-card .pricing-price {
+            font-size: 2.5rem;
+            margin-bottom: 4px;
+        }
+
+        .self-serve-details {
             color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 28px;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .lead-form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .lead-form input {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 12px 16px;
-            color: var(--text);
-            font-family: var(--sans);
             font-size: 0.9rem;
-            flex: 1;
-            min-width: 180px;
-            transition: border-color 0.2s ease;
+            margin: 16px 0 24px;
+            line-height: 1.6;
         }
 
-        .lead-form input:focus {
-            outline: none;
-            border-color: var(--green);
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        /* ===== COMPARISON TABLE ===== */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-card);
         }
 
-        .lead-form input::placeholder {
-            color: var(--text-dim);
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 700px;
         }
 
-        .lead-form button {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        .compare-table thead th {
             font-family: var(--mono);
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 12px 24px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            background: var(--green);
-            color: #000;
-            transition: all 0.25s ease;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-align: left;
+            padding: 18px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
             white-space: nowrap;
         }
 
-        .lead-form button:hover {
-            background: #2dd868;
-            box-shadow: 0 0 24px var(--green-glow);
-            transform: translateY(-1px);
+        .compare-table thead th:first-child {
+            color: var(--text-dim);
         }
 
-        .lead-form button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .lead-confirmation {
-            display: none;
-            font-family: var(--mono);
-            font-size: 1rem;
+        .compare-table thead th.highlight {
             color: var(--green);
-            padding: 16px 0 4px;
         }
 
-        .lead-error {
-            display: none;
-            font-family: var(--mono);
-            font-size: 0.85rem;
-            color: #ef4444;
-            margin-bottom: 12px;
+        .compare-table tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            vertical-align: top;
         }
 
-        @media (max-width: 600px) {
-            .lead-magnet-box {
-                padding: 32px 24px;
-            }
-            .lead-form {
-                flex-direction: column;
-            }
-            .lead-form input {
-                min-width: 0;
-            }
+        .compare-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .compare-table tbody td:first-child {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .compare-table tbody td.highlight {
+            color: var(--green);
+            font-weight: 500;
         }
 
         /* ===== FAQ ===== */
@@ -1096,13 +974,6 @@
         .final-cta .sub {
             font-size: 1.1rem;
             color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .final-cta .detail {
-            font-family: var(--mono);
-            font-size: 0.95rem;
-            color: var(--text-dim);
             margin-bottom: 40px;
         }
 
@@ -1200,19 +1071,6 @@
                 padding: 80px 0;
             }
 
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 440px;
-            }
-
-            .hero-lead-form {
-                flex-direction: column;
-            }
-
-            .hero-lead-form input {
-                min-width: 0;
-            }
-
             .hero-proof {
                 font-size: 0.75rem;
             }
@@ -1238,6 +1096,25 @@
             .final-cta {
                 padding: 80px 0;
             }
+
+            .app-modal {
+                width: 100%;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 0;
+                padding: 32px 24px;
+            }
+
+            .compare-table {
+                min-width: 600px;
+            }
+
+            .compare-table thead th,
+            .compare-table tbody td {
+                padding: 12px 10px;
+                font-size: 0.8rem;
+            }
         }
 
         /* ===== SCROLL REVEAL ===== */
@@ -1259,30 +1136,24 @@
     <nav>
         <div class="nav-inner">
             <a href="#" class="logo">ship<span>louder</span></a>
-            <a href="#pricing" class="btn btn-primary">Get Started &rarr;</a>
+            <button class="btn btn-primary" onclick="openAppModal()">Apply for Free Videos &rarr;</button>
         </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="container">
-            <div class="badge fade-in delay-1">[ FOR FOUNDERS WHO SHIP ]</div>
+            <div class="badge fade-in delay-1">[ FOR APPS READY TO SCALE ]</div>
             <h1 class="fade-in delay-2">
-                Real creators make videos for your app.<br>
-                <span class="line-green">First one's free.</span>
+                50 creator videos for your app.<br>
+                <span class="line-green">Free.</span>
             </h1>
-            <p class="hero-sub fade-in delay-3">We connect your app with real human creators who film authentic content. Posted to TikTok, Instagram, and YouTube. No AI.</p>
-            <div class="hero-inline-form fade-in delay-4">
-                <form class="hero-lead-form" id="hero-lead-form">
-                    <input type="url" id="hero-lead-url" placeholder="yourapp.com" required>
-                    <input type="email" id="hero-lead-email" placeholder="you@email.com" required>
-                    <button type="submit" id="hero-lead-btn">Get My Free Video &rarr;</button>
-                </form>
+            <p class="hero-sub fade-in delay-3">We run full UGC campaigns &mdash; 500+ real creator videos, posted across TikTok, Instagram, and YouTube. Apply to get your first 50 on us. That's $7,500+ in value. No catch.</p>
+            <div class="fade-in delay-4">
+                <button class="btn btn-primary btn-xl" onclick="openAppModal()">Apply for 50 Free Videos &rarr;</button>
                 <p class="hero-lead-micro">No card required. No strings.</p>
-                <div class="hero-lead-error" id="hero-lead-error"></div>
-                <div class="hero-lead-confirmation" id="hero-lead-confirmation">We're on it. Check your inbox in 48 hours.</div>
             </div>
-            <p class="hero-proof fade-in delay-5">Trusted by founders who've launched on Product Hunt, Reddit, and the App Store</p>
+            <p class="hero-proof fade-in delay-5">Trusted by funded startups and indie founders scaling on Product Hunt, Reddit, and the App Store</p>
         </div>
     </section>
 
@@ -1309,36 +1180,35 @@
         </div>
     </section>
 
-
     <hr class="divider">
 
     <!-- HOW IT WORKS -->
     <section id="how-it-works">
         <div class="container section-center">
-            <h2 class="section-title reveal">Subscribe. Receive. Grow.</h2>
+            <h2 class="section-title reveal">Apply. Taste. Scale.</h2>
             <div class="steps">
                 <div class="step reveal">
                     <div class="step-num">1</div>
-                    <h3>Pick your plan</h3>
-                    <p>Choose 20 or 100 videos/month based on your growth goals.</p>
+                    <h3>Apply in 60 seconds</h3>
+                    <p>Tell us about your app and growth goals. We review every application within 24 hours.</p>
                 </div>
                 <div class="step reveal">
                     <div class="step-num">2</div>
-                    <h3>We set everything up</h3>
-                    <p>No social accounts? No problem. We create and fully manage your TikTok, Instagram, and YouTube accounts for you. You show up to finished profiles with content already posting.</p>
+                    <h3>Get 50 free videos</h3>
+                    <p>We match you with creators who film authentic content for your product. Delivered fast.</p>
                 </div>
                 <div class="step reveal">
                     <div class="step-num">3</div>
-                    <h3>We handle everything</h3>
-                    <p>Creator sourcing, product seeding, coordination, posting. You do nothing.</p>
+                    <h3>See the results</h3>
+                    <p>Watch real creators talk about your app across TikTok, Instagram, and YouTube. Measure the impact.</p>
                 </div>
                 <div class="step reveal">
                     <div class="step-num">4</div>
-                    <h3>Videos delivered weekly</h3>
-                    <p>Dripped across TikTok, Instagram, and YouTube every week.</p>
+                    <h3>Scale to 500+</h3>
+                    <p>Ready to go all-in? We run your full UGC campaign &mdash; 500+ videos, full posting and management.</p>
                 </div>
             </div>
-            <p class="steps-note reveal">Every video is yours. Run them as Meta ads, put them on your landing page, anywhere.</p>
+            <p class="steps-note reveal">Every video is yours. Run them as ads, put them on your landing page, wherever you want.</p>
         </div>
     </section>
 
@@ -1347,35 +1217,42 @@
     <!-- PRICING -->
     <section id="pricing">
         <div class="container section-center">
-            <h2 class="section-title reveal">Simple pricing. No retainers. No surprises.</h2>
-            <p class="section-sub reveal">Cancel anytime. Videos are yours to keep forever.</p>
+            <h2 class="section-title reveal">The full campaign.</h2>
 
-            <div class="pricing-grid">
-                <!-- STARTER -->
-                <div class="pricing-card reveal">
-                    <div class="pricing-plan">starter</div>
-                    <div class="pricing-price">$500</div>
-                    <div class="pricing-per-video">$25/video</div>
-                    <div class="pricing-detail"><strong>20</strong> creator videos</div>
-                    <div class="pricing-detail">TikTok + Instagram + YouTube</div>
-                    <p class="pricing-description">Perfect for a new app or product launch. Real human creators who get your product, filmed authentically and posted across TikTok, Instagram, and YouTube.</p>
-                    <a href="/checkout/starter" class="btn btn-ghost btn-large">Get Started &rarr;</a>
-                </div>
-
-                <!-- SCALE -->
+            <div style="max-width: 480px; margin: 0 auto;">
                 <div class="pricing-card featured reveal">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <div class="pricing-plan">scale</div>
-                    <div class="pricing-price">$1,500</div>
-                    <div class="pricing-per-video">$15/video</div>
-                    <div class="pricing-detail"><strong>100</strong> creator videos</div>
-                    <div class="pricing-detail">TikTok + Instagram + YouTube</div>
-                    <p class="pricing-description">For founders who&rsquo;ve validated their app and are ready to flood every platform with authentic creator content. Handpicked creators matched to your product category.</p>
-                    <a href="/checkout/scale" class="btn btn-primary btn-large">Get Scale &rarr;</a>
+                    <div class="popular-badge">FULL CAMPAIGN</div>
+                    <div class="pricing-plan">ugc campaign</div>
+                    <div class="pricing-price">$7,500</div>
+                    <div class="pricing-per-video">500 creator videos</div>
+                    <ul class="pricing-features">
+                        <li><span class="check">&check;</span> 500 real creator videos filmed for your product</li>
+                        <li><span class="check">&check;</span> Posted across TikTok, Instagram, and YouTube</li>
+                        <li><span class="check">&check;</span> Creator sourcing, coordination, and management</li>
+                        <li><span class="check">&check;</span> Full content ownership &mdash; use for ads, website, anywhere</li>
+                        <li><span class="check">&check;</span> Content strategy optimized per platform</li>
+                        <li><span class="check">&check;</span> Dedicated campaign manager</li>
+                    </ul>
+                    <button class="btn btn-primary btn-large" onclick="openAppModal()">Apply for Free Videos First &rarr;</button>
                 </div>
             </div>
 
-            <p class="pricing-custom reveal" style="text-align:center; margin-top:32px; font-size:1.05rem; color:#b0b0b0;">Shipping multiple apps or need a larger volume? <a href="#" style="color:#fff; text-decoration:underline;">Let&rsquo;s talk &rarr;</a></p>
+            <p class="pricing-value reveal">Market rate for 500 UGC videos: $75,000&ndash;$106,000. <strong>You pay $7,500.</strong></p>
+            <p class="pricing-small-link reveal"><a href="#self-serve">Just need a few videos? Get started with a small package &rarr;</a></p>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- SELF-SERVE -->
+    <section id="self-serve">
+        <div class="container section-center">
+            <div class="self-serve-card reveal">
+                <div class="pricing-plan">small package</div>
+                <div class="pricing-price">$500</div>
+                <p class="self-serve-details">20 creator videos delivered to you.<br>No posting. Videos are yours to use anywhere.</p>
+                <a href="/checkout/starter" class="btn btn-ghost btn-large">Buy Now &rarr;</a>
+            </div>
         </div>
     </section>
 
@@ -1384,57 +1261,60 @@
     <!-- VALUE COMPARISON -->
     <section id="compare">
         <div class="container section-center">
-            <div class="compare-toggle reveal">
-                <button onclick="setComparePlan('starter')">Starter</button>
-                <button class="active" onclick="setComparePlan('scale')">Scale</button>
-            </div>
-            <h2 class="section-title section-center reveal" id="compare-headline">What $1,500 actually gets you.</h2>
+            <h2 class="section-title reveal">What $7,500 actually gets you.</h2>
             <div class="table-wrap reveal" style="margin-top: 40px;">
                 <table class="compare-table">
                     <thead>
                         <tr>
                             <th></th>
-                            <th class="highlight" id="compare-col-header">Ship Louder Scale</th>
-                            <th>Traditional UGC Agency</th>
-                            <th>Freelance Creators</th>
+                            <th class="highlight">ShipLouder Campaign</th>
+                            <th>In-House Content Team</th>
+                            <th>UGC Marketplace (Billo, JoinBrands)</th>
+                            <th>Agency Retainer</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Monthly cost</td>
-                            <td class="highlight" id="compare-cost">$1,500</td>
-                            <td id="compare-agency-cost">$10,000&ndash;$20,000</td>
-                            <td id="compare-freelance-cost">$15,000&ndash;$21,200</td>
+                            <td>Cost for 500 videos</td>
+                            <td class="highlight">$7,500</td>
+                            <td>$50,000&ndash;$80,000</td>
+                            <td>$30,000&ndash;$50,000</td>
+                            <td>$60,000&ndash;$100,000+</td>
                         </tr>
                         <tr>
                             <td>Videos/month</td>
-                            <td class="highlight" id="compare-videos">100</td>
-                            <td>10&ndash;20</td>
-                            <td id="compare-freelance-videos">100</td>
+                            <td class="highlight">500 (one-time) or ongoing</td>
+                            <td>20&ndash;40</td>
+                            <td>50&ndash;100</td>
+                            <td>30&ndash;60</td>
                         </tr>
                         <tr>
                             <td>Management overhead</td>
                             <td class="highlight">Zero</td>
-                            <td>High</td>
-                            <td>Very High</td>
+                            <td>Full team required</td>
+                            <td>You manage creators</td>
+                            <td>Medium</td>
                         </tr>
                         <tr>
                             <td>Content ownership</td>
                             <td class="highlight">Full</td>
-                            <td>Limited</td>
-                            <td>Varies</td>
+                            <td>Full</td>
+                            <td>Varies by platform</td>
+                            <td>Often limited</td>
                         </tr>
                         <tr>
                             <td>Time to first video</td>
-                            <td class="highlight">1 week</td>
-                            <td>4&ndash;6 weeks</td>
+                            <td class="highlight">Days</td>
+                            <td>2&ndash;3 months (hiring)</td>
                             <td>2&ndash;4 weeks</td>
+                            <td>3&ndash;6 weeks</td>
                         </tr>
                         <tr>
-                            <td>Account setup &amp; management</td>
-                            <td class="highlight">Included</td>
-                            <td>Extra</td>
-                            <td>You figure it out</td>
+                            <td>Posting included</td>
+                            <td class="highlight">Yes, all platforms</td>
+                            <td>You handle it</td>
+                            <td>No</td>
+                            <td>Sometimes</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1451,11 +1331,11 @@
             <div class="faq-list" style="margin-top: 40px;">
                 <div class="faq-item reveal">
                     <button class="faq-q" onclick="toggleFaq(this)">
-                        Do I need existing social media accounts?
+                        How does the free 50 videos work?
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-a">
-                        <p>No. We create and manage your TikTok, Instagram, and YouTube accounts as part of the service. You show up to ready-to-go profiles.</p>
+                        <p>You apply, we review within 24 hours, and once approved we start matching creators to your product immediately. You'll see your first videos within days.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -1464,16 +1344,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-a">
-                        <p>Real people across TikTok, Instagram, and YouTube with audiences in your product's niche. We source and vet them for you.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-q" onclick="toggleFaq(this)">
-                        How fast will I get my first videos?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-a">
-                        <p>First batch typically within 5&ndash;7 business days after onboarding.</p>
+                        <p>Real humans. No AI, no stock footage. We match creators to your product category so the content feels authentic.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -1482,7 +1353,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-a">
-                        <p>100%. Use them for Meta ads, Google ads, your landing page, email, anywhere.</p>
+                        <p>Yes, 100%. Use them for paid ads, your website, app store listing, social media &mdash; anywhere.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -1491,16 +1362,34 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-a">
-                        <p>We work with you to ensure quality. If a video doesn't meet standards, we replace it.</p>
+                        <p>We replace it. Quality is guaranteed.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
                     <button class="faq-q" onclick="toggleFaq(this)">
-                        Can I cancel anytime?
+                        How fast do I get my videos?
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-a">
-                        <p>Yes. Month-to-month. No contracts. No cancellation fees.</p>
+                        <p>First batch within days of approval. Full 500-video campaigns are delivered over 4&ndash;6 weeks depending on scope.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Do you post the videos too?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>For campaign clients (500+), yes &mdash; we post across TikTok, Instagram, and YouTube. For the small self-serve package, we deliver the video files directly to you.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        What apps/products do you work with?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <p>SaaS, mobile apps, browser extensions, dev tools, AI products &mdash; any software product with a visual interface or demo flow.</p>
                     </div>
                 </div>
             </div>
@@ -1512,35 +1401,65 @@
     <!-- FINAL CTA -->
     <section class="final-cta">
         <div class="container">
-            <h2 class="reveal">Stop building in silence.</h2>
-            <p class="sub reveal">Start shipping your marketing.</p>
-            <p class="detail reveal">$500/month for 20 videos. $1,500/month for 100. Delivered weekly. We handle everything &mdash; including building your accounts from scratch.</p>
+            <h2 class="reveal">Stop guessing. Start scaling.</h2>
+            <p class="sub reveal">$7,500+ in creator videos. Free. See the quality, then decide.</p>
             <div class="reveal">
-                <a href="#pricing" class="btn btn-primary btn-xl">Get Started Today &rarr;</a>
+                <button class="btn btn-primary btn-xl" onclick="openAppModal()">Apply for 50 Free Videos &rarr;</button>
             </div>
-            <p class="small-text reveal">or email <a href="mailto:hello@shiplouder.com">hello@shiplouder.com</a> with questions</p>
+            <p class="small-text reveal">Or just need a few? <a href="#self-serve">Buy a small package &rarr;</a></p>
         </div>
     </section>
+
+    <!-- APPLICATION POPUP MODAL -->
+    <div class="app-overlay" id="app-overlay">
+        <div class="app-modal">
+            <button class="app-close" id="app-close">&times;</button>
+            <h2>Apply for 50 Free Videos</h2>
+            <p class="app-sub">Tell us about your app. We review every application within 24 hours.</p>
+            <form class="app-form" id="app-form">
+                <label for="app-company">Company / App Name</label>
+                <input type="text" id="app-company" name="company" placeholder="Acme Inc." required>
+
+                <label for="app-url">App or Website URL</label>
+                <input type="url" id="app-url" name="app_url" placeholder="https://yourapp.com" required>
+
+                <label for="app-revenue">Monthly Revenue or Funding Stage</label>
+                <select id="app-revenue" name="revenue" required>
+                    <option value="" disabled selected>Select one...</option>
+                    <option value="Pre-revenue">Pre-revenue</option>
+                    <option value="$1K-$10K/mo">$1K-$10K/mo</option>
+                    <option value="$10K-$50K/mo">$10K-$50K/mo</option>
+                    <option value="$50K-$200K/mo">$50K-$200K/mo</option>
+                    <option value="$200K+/mo">$200K+/mo</option>
+                    <option value="Funded (Seed/Series A+)">Funded (Seed/Series A+)</option>
+                </select>
+
+                <label for="app-goal">What's your goal with UGC?</label>
+                <textarea id="app-goal" name="goal" placeholder="e.g. Drive app installs, build social proof, scale paid ads..." rows="3" required></textarea>
+
+                <label for="app-email">Email</label>
+                <input type="email" id="app-email" name="email" placeholder="you@company.com" required>
+
+                <button type="submit" id="app-submit-btn">Submit Application &rarr;</button>
+            </form>
+            <div class="app-error" id="app-error"></div>
+            <div class="app-confirmation" id="app-confirmation">Application received. We'll review within 24 hours and get your videos started.</div>
+        </div>
+    </div>
 
     <!-- EXIT-INTENT POPUP -->
     <div class="exit-overlay" id="exit-overlay">
         <div class="exit-modal">
-            <h2>Wait &mdash; get a free creator video for your app</h2>
-            <p class="exit-sub">See what real creator content looks like for YOUR product. No strings.</p>
-            <form class="hero-lead-form" id="exit-lead-form">
-                <input type="url" id="exit-lead-url" placeholder="yourapp.com" required>
-                <input type="email" id="exit-lead-email" placeholder="you@email.com" required>
-                <button type="submit" id="exit-lead-btn">Send My Free Video &rarr;</button>
-            </form>
-            <div class="hero-lead-error" id="exit-lead-error"></div>
-            <div class="hero-lead-confirmation" id="exit-lead-confirmation">We're on it. Check your inbox in 48 hours.</div>
+            <h2>Wait &mdash; get 50 free creator videos for your app</h2>
+            <p class="exit-sub">We'll match you with real creators and deliver 50 videos. No strings. $7,500+ in value, free.</p>
+            <button class="btn btn-primary btn-large" onclick="hideExitPopup(); openAppModal();" style="width: 100%; justify-content: center;">Apply for 50 Free Videos &rarr;</button>
             <button class="exit-dismiss" id="exit-dismiss">No thanks</button>
         </div>
     </div>
 
     <!-- STICKY MOBILE CTA -->
     <div class="sticky-mobile-cta" id="sticky-mobile-cta">
-        <a href="#hero">Get a free creator video &rarr;</a>
+        <button onclick="openAppModal()">Apply for 50 free videos &rarr;</button>
     </div>
 
     <!-- FOOTER -->
@@ -1549,7 +1468,7 @@
             <div class="footer-inner">
                 <div class="footer-left">
                     <a href="#" class="logo">ship<span>louder</span></a>
-                    <p class="tagline">Real creator videos for founders who ship.</p>
+                    <p class="tagline">Full UGC campaigns for scaling apps.</p>
                 </div>
                 <div class="footer-right">
                     <a href="mailto:hello@shiplouder.com">Contact</a>
@@ -1570,57 +1489,71 @@
             return 'Direct';
         }
 
-        // Track whether hero form was submitted (prevents exit popup)
-        var heroFormSubmitted = false;
+        // Track whether application was submitted
+        var appSubmitted = false;
 
-        // Generic lead form submit handler
-        function handleLeadSubmit(formId, emailId, urlId, btnId, errorId, confirmId, subject) {
-            document.getElementById(formId).addEventListener('submit', async function(e) {
-                e.preventDefault();
-                var btn = document.getElementById(btnId);
-                var errorEl = document.getElementById(errorId);
-                var origText = btn.textContent;
-                btn.disabled = true;
-                btn.textContent = 'Sending...';
-                errorEl.style.display = 'none';
-
-                try {
-                    var res = await fetch('https://api.web3forms.com/submit', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            access_key: '47ddf88c-91b1-49cf-8543-bd62d85f0036',
-                            subject: subject,
-                            from_name: 'ShipLouder Free Video Form',
-                            email: document.getElementById(emailId).value,
-                            app_url: document.getElementById(urlId).value,
-                            source: getUtmSource(),
-                        }),
-                    });
-                    if (!res.ok) throw new Error('Server error');
-
-                    document.getElementById(formId).style.display = 'none';
-                    var micro = document.querySelector('.hero-lead-micro');
-                    if (micro && formId === 'hero-lead-form') micro.style.display = 'none';
-                    document.getElementById(confirmId).style.display = 'block';
-                    heroFormSubmitted = true;
-                    sessionStorage.setItem('shiplouder_submitted', '1');
-                } catch (err) {
-                    errorEl.textContent = 'Something went wrong. Please try again or email team@viralux.media.';
-                    errorEl.style.display = 'block';
-                    btn.disabled = false;
-                    btn.textContent = origText;
-                }
-            });
+        // ===== APPLICATION MODAL =====
+        function openAppModal() {
+            document.getElementById('app-overlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
 
-        // Hero form
-        handleLeadSubmit('hero-lead-form', 'hero-lead-email', 'hero-lead-url', 'hero-lead-btn', 'hero-lead-error', 'hero-lead-confirmation', 'New Free Video Request (Hero)');
+        function closeAppModal() {
+            document.getElementById('app-overlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
 
-        // Exit popup form
-        handleLeadSubmit('exit-lead-form', 'exit-lead-email', 'exit-lead-url', 'exit-lead-btn', 'exit-lead-error', 'exit-lead-confirmation', 'New Free Video Request (Exit)');
+        document.getElementById('app-close').addEventListener('click', closeAppModal);
+        document.getElementById('app-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeAppModal();
+        });
 
-        // Exit-intent popup
+        // Application form submit
+        document.getElementById('app-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var btn = document.getElementById('app-submit-btn');
+            var errorEl = document.getElementById('app-error');
+            var origText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+            errorEl.style.display = 'none';
+
+            try {
+                var res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: '47ddf88c-91b1-49cf-8543-bd62d85f0036',
+                        subject: 'ShipLouder — Free Video Application',
+                        from_name: 'ShipLouder Application Form',
+                        company: document.getElementById('app-company').value,
+                        app_url: document.getElementById('app-url').value,
+                        revenue: document.getElementById('app-revenue').value,
+                        goal: document.getElementById('app-goal').value,
+                        email: document.getElementById('app-email').value,
+                        source: getUtmSource(),
+                    }),
+                });
+                if (!res.ok) throw new Error('Server error');
+
+                document.getElementById('app-form').style.display = 'none';
+                document.querySelector('.app-sub').style.display = 'none';
+                document.getElementById('app-confirmation').style.display = 'block';
+                appSubmitted = true;
+                sessionStorage.setItem('shiplouder_submitted', '1');
+            } catch (err) {
+                errorEl.textContent = 'Something went wrong. Please try again or email team@viralux.media.';
+                errorEl.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = origText;
+            }
+        });
+
+        // ===== EXIT-INTENT POPUP =====
+        function hideExitPopup() {
+            document.getElementById('exit-overlay').classList.remove('show');
+        }
+
         (function() {
             var overlay = document.getElementById('exit-overlay');
             var shown = false;
@@ -1628,14 +1561,10 @@
             function showExitPopup() {
                 if (shown) return;
                 if (sessionStorage.getItem('shiplouder_exit_shown')) return;
-                if (heroFormSubmitted || sessionStorage.getItem('shiplouder_submitted')) return;
+                if (appSubmitted || sessionStorage.getItem('shiplouder_submitted')) return;
                 shown = true;
                 sessionStorage.setItem('shiplouder_exit_shown', '1');
                 overlay.classList.add('show');
-            }
-
-            function hideExitPopup() {
-                overlay.classList.remove('show');
             }
 
             // Desktop: mouse leaves viewport toward top
@@ -1680,42 +1609,6 @@
             }, { threshold: 0 });
             stickyObserver.observe(hero);
         })();
-
-        // Comparison toggle
-        function setComparePlan(plan) {
-            var data = {
-                starter: {
-                    headline: 'What $500 actually gets you.',
-                    colHeader: 'Ship Louder Starter',
-                    cost: '$500',
-                    videos: '20',
-                    agencyCost: '$3,000\u2013$4,000',
-                    freelanceCost: '$3,000\u2013$4,240',
-                    freelanceVideos: '20'
-                },
-                scale: {
-                    headline: 'What $1,500 actually gets you.',
-                    colHeader: 'Ship Louder Scale',
-                    cost: '$1,500',
-                    videos: '100',
-                    agencyCost: '$10,000\u2013$20,000',
-                    freelanceCost: '$15,000\u2013$21,200',
-                    freelanceVideos: '100'
-                }
-            };
-            var d = data[plan];
-            document.getElementById('compare-headline').textContent = d.headline;
-            document.getElementById('compare-col-header').textContent = d.colHeader;
-            document.getElementById('compare-cost').textContent = d.cost;
-            document.getElementById('compare-videos').textContent = d.videos;
-            document.getElementById('compare-agency-cost').textContent = d.agencyCost;
-            document.getElementById('compare-freelance-cost').textContent = d.freelanceCost;
-            document.getElementById('compare-freelance-videos').textContent = d.freelanceVideos;
-
-            var btns = document.querySelectorAll('.compare-toggle button');
-            btns.forEach(function(b) { b.classList.remove('active'); });
-            btns[plan === 'starter' ? 0 : 1].classList.add('active');
-        }
 
         function toggleFaq(btn) {
             const item = btn.parentElement;
